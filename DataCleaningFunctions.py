@@ -100,7 +100,7 @@ class DataCleaner:
 
     def add_whitespace(self, match):
         """
-        This function add whitespace between concatenated words in a string where there is a lowercase letter followed immediately by an uppercase letter. 
+        This function add whitespace between concatenated words in a string where there is a lowercase letter followed immediately by an uppercase letter.
         """
         return match.group(1) + ' ' + match.group(2)
 
@@ -154,7 +154,7 @@ class DataCleaner:
     def map_country_to_continent(self):
         country_counts = self.data['Country'].value_counts()
         continent_mapping = {
-            'north america': ['united states', 'canada', 'mexico', 'honduras', 'guam', 'trinidad and tobago', 'venezuela', 'guyana', 'suriname', 'french guiana'],
+            'north america': ['united states', 'canada', 'mexico', 'honduras'],
             'united states': ['usa', 'american'],
             'asia': ['indonesia', 'japan', 'taiwan', 'hong kong', 'china', 'south korea', 'myanmar', 'india', 'israel', 'jordan', 'qatar', 'japan', 'thailand', 'singapore', 
                     'malaysia', 'kazakhstan', 'vietnam', 'pakistan', 'philippines', 'bangladesh', 'bhutan', 'cambodia', 'laos', 'brunei', 'timor-leste', 'mongolia', 
@@ -163,8 +163,8 @@ class DataCleaner:
                     'czech republic', 'russia', 'austria', 'switzerland', 'iceland', 'greece', 'romania', 'serbia', 'turkey', 'luxembourg', 'portugal', 'malta', 
                     'bulgaria', 'ireland', 'croatia', 'slovenia', 'slovakia', 'latvia', 'estonia', 'hungary', 'belarus', 'lithuania', 'macedonia', 'monaco', 
                         'armenia', 'kazakhstan', 'poland', 'estonia', 'hungary', 'lithuania', 'slovenia', 'slovakia', 'estonia'],
-            #'oceania': ['australia', 'new zealand', 'marshall islands','tonga','french republic'],
-            'south america': ['argentina', 'chile', 'peru', 'brazil', 'colombia', 'ecuador']}
+            #'oceania': ['australia', 'new zealand', 'marshall islands','tonga','french republic', ''guam'],
+            'south america': ['argentina', 'chile', 'peru', 'brazil', 'colombia', 'ecuador', 'french guiana', 'trinidad and tobago', 'venezuela', 'guyana', 'suriname']}
 
         def inner_map_country_to_continent(country):
             if country_counts.get(country, 0) < 45:
@@ -175,7 +175,6 @@ class DataCleaner:
             return country
 
         self.data['Country'] = self.data['Country'].apply(inner_map_country_to_continent)
-
 
     def consolidate_directors(self):
         def inner_consolidate_directors(group):
@@ -319,6 +318,17 @@ class DataCleaner:
         # Updating the DataFrame
         self.data = self.data[~self.data['Title'].isin(different_cast['Title'])]
         self.data = self.data.append(rows_to_keep).reset_index(drop=True)
+    
+    def clean_whitespace(df, column_name):
+        """
+        Clean unnecessary whitespace in the specified column of a DataFrame.  
+        """
+        # Remove leading and trailing whitespace
+        df[column_name] = df[column_name].str.strip()
+
+        # Remove extra spaces between words (uncomment the next line if needed)
+        df[column_name] = df[column_name].apply(lambda x: ' '.join(x.split()))
+        return df
 
     def clean_hyperef(self): 
         # Identifying rows with the longest 'Hyperref' for each 'Title'
@@ -341,7 +351,7 @@ class DataCleaner:
         # # Updating the DataFrame
         # self.data = self.data[~self.data['Title'].isin(different_country['Title'])]
         # self.data = self.data.append(rows_to_keep).reset_index(drop=True)
-        # Identify titles that only have 'other' as the country
+        # Identify titles that only have 'other' as the country 
         only_other_country = self.data.groupby('Title').filter(lambda x: (x['Country'] == 'other').all())
         # Remove rows with 'other' country, except those identified above
         different_country = different_country[~((different_country['Country'] == 'other') & 
@@ -354,7 +364,6 @@ class DataCleaner:
         self.data = self.data[~self.data['Title'].isin(different_country['Title'])]
         # Then, append the rows to keep to the filtered DataFrame
         self.data = self.data.append(rows_to_keep).reset_index(drop=True)
-
 
     def drop_duplicates(self): 
         self.data = self.data.drop_duplicates(keep='first')
@@ -395,6 +404,17 @@ class DataProcesser:
             (data['Cast'] != ' '))
         data = data[conditions].reset_index(drop=True)
         return data
+    
+    def clean_whitespace(self, df, column_name):
+        """
+        Clean unnecessary whitespace in the specified column of a DataFrame.
+        """
+        # Remove leading and trailing whitespace
+        df[column_name] = df[column_name].str.strip()
+
+        # Remove extra spaces between words (uncomment the next line if needed)
+        df[column_name] = df[column_name].apply(lambda x: ' '.join(x.split()))
+        return df
 
     
     def get_artist_collaboration(self, data): 
