@@ -103,6 +103,7 @@ class DataCleaning:
         # Replace 
         text = text.replace('!', '')
         text = text.replace('.', '')
+        text = text.replace('-', '')
         return text
 
     def clean_text_cast_column(self, text):
