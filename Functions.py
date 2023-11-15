@@ -5,15 +5,14 @@ import requests
 from bs4 import BeautifulSoup
 
 class DataCollection:    
-    def collect_movies_artist_data(self, genre: str, year:str, sub_years:list) -> pd.DataFrame :
-
+    def collect_movies_artist_data(self, genre: str, year:str, sub_years:list) -> pd.DataFrame:
         titles = []
-        titles_refs = []
         directors = []
         casts = []
         countries = []
         all_years = []
         genres = []
+        link_refs = []
 
         # Defining the url. Notice that it is different for the genre horror. 
         if genre == 'horror':
@@ -58,34 +57,39 @@ class DataCollection:
                         director = columns[1].get_text(strip=True)
                         cast_list = columns[2].get_text(strip=True)
                         country = columns[3].get_text(strip=True)
-                    
+
+                    # Getting hyperlinks to plots of movie
+                    if genre == 'horror' and not (sub_year == '2020' or sub_year == '2021' or sub_year == '2022' or sub_year == '2019'):
+                        first_column = row.find('th')
+                    else:
+                        first_column = row.find('td')
+
+                    if first_column: 
+                        href_link = first_column.find('a')
+                        if href_link:
+                            href = href_link.get('href').replace('/wiki/', '')
+                        else:
+                            href = ''
+                    else: 
+                        href = ''
+            
                     titles.append(title)
                     directors.append(director)
                     casts.append(cast_list)
                     countries.append(country)
                     genres.append(genre)
                     all_years.append(sub_year)
-                
-                # Extracting href links 
-                first_column = row.find('td')
-                if first_column: 
-                    href_link = first_column.find('a')
-                    title_link = first_column.get_text(strip=True)
-                    if href_link:
-                        href = href_link.get('href').replace('/wiki/', '')
-                    else:
-                        href = ''
-                    titles_refs.append((title_link, href))
+                    link_refs.append(href)
         
         data = {"Title": titles,
                 "Director": directors,
                 "Cast": casts,
                 "Country": countries,
                 "Genre": genres, 
-                "Year": all_years}
+                "Year": all_years, 
+                "Hyperref": link_refs}
         
         df = pd.DataFrame(data)
-        df['Hyperref'] = df['Title'].apply(lambda title: next((href for t, href in titles_refs if t == title), ''))
         return df
 
 class DataCleaning:
@@ -411,7 +415,7 @@ class DataCleaning:
 
 class GetConnectedMoviesArtist:
 
-    def connected_movies_and_cast(self):
+    def connected_movies_and_cast(self, df_movies: pd.DataFrame):
         # Create a dictionary to map each movie to its cast
         movie_cast_map = {}
         for index, row in df_movies.iterrows():
