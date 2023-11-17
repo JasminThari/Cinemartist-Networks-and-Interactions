@@ -1,0 +1,69 @@
+{
+  "schema":{
+    "fields":[
+      {
+        "name":"index",
+        "type":"integer"
+      },
+      {
+        "name":"Title",
+        "type":"string"
+      },
+      {
+        "name":"Director",
+        "type":"string"
+      },
+      {
+        "name":"Cast",
+        "type":"string"
+      },
+      {
+        "name":"Country",
+        "type":"string"
+      },
+      {
+        "name":"Genre",
+        "type":"string"
+      },
+      {
+        "name":"Year",
+        "type":"string"
+      },
+      {
+        "name":"Hyperref",
+        "type":"string"
+      },
+      {
+        "name":"BoxOffice",
+        "type":"string"
+      },
+      {
+        "name":"runtime",
+        "type":"string"
+      },
+      {
+        "name":"Date",
+        "type":"string"
+      }
+    ],
+    "primaryKey":[
+      "index"
+    ],
+    "pandas_version":"1.4.0"
+  },
+  "data":[
+    {
+      "index":0,
+      "Title":"365 Days",
+      "Director":"barbara biaowas tomasz mandes",
+      "Cast":"anna-maria sieklucka,michele morrone, bronisaw wrocawski, otar saralidze,magdalena lamparska,natasza urbanska",
+      "Country":"europe",
+      "Genre":"Thriller",
+      "Year":"2020",
+      "Hyperref":"365_Days_(2020_film)",
+      "BoxOffice":"$9,458,590",
+      "runtime":null,
+      "Date":"07 Feb 2020 (Poland)"
+    }
+  ]
+}
