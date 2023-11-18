@@ -473,11 +473,11 @@ class GetConnectedMoviesArtist:
         return connected_movies
 
 class Plots: 
-    def plot_bar(self, x, y, data, title, xlabel, ylabel, figsize, color_palette, rotation=False): 
+    def plot_bar(self, x, y, data, order, title, xlabel, ylabel, figsize, color_palette, rotation=False): 
         # Create the bar plot
         sns.set(style="white") 
         plt.figure(figsize=figsize) 
-        barplot = sns.barplot(x=x, y=y, data=data, palette=color_palette)
+        barplot = sns.barplot(x=x, y=y, data=data, order=order, palette=color_palette)
 
         # Rotate the labels on x-axis for better readability
         if rotation: 
@@ -497,4 +497,54 @@ class Plots:
                             xytext=(0, 4),
                             textcoords='offset points',
                             fontsize=13)
+        plt.show()
+
+    def stacked_bar_plot(self, list_stacks, df, column, colors, title, figsize):
+
+        # Create a figure and axis for the plot
+        fig, ax = plt.subplots(figsize=figsize)
+
+        # Initialize legend handles and labels
+        legend_handles = []
+        legend_labels = []
+
+        # Iterate through each row in the DataFrame
+        for index, row in df.iterrows():
+            com_name = row[column]
+            
+            # Get the rating counts for the current com_name
+            counts = [row[count] for count in list_stacks]
+            
+            # Calculate the total count for normalization
+            total_count = sum(counts)
+            
+            # Convert counts to percentages
+            percentages = [count / total_count * 100 for count in counts]
+            
+            # Create a vertical stacked bar for the current com_name
+            bars = ax.bar(com_name, height=percentages, color=colors, bottom=[sum(percentages[:i]) for i in range(len(list_stacks))])
+            
+            # Create legend handles and labels for each rating
+            for i, typ in enumerate(list_stacks):
+                if index == 0:
+                    legend_handles.append(mpatches.Patch(color=colors[i], label=typ))
+            
+        # Manually create the legend without count numbers
+        ax.legend(handles=legend_handles)
+
+        # Set the y-axis label
+        ax.set_ylabel('Percentage', fontsize=16)
+        ax.set_xlabel('Community', fontsize=16)
+
+        # Set the y-axis ticks to display percentages
+        ax.set_yticklabels(['{:,.0f}%'.format(x) for x in ax.get_yticks()])
+        ax.set_ylim([0, ax.get_ylim()[1] * 1.08]) 
+        # Rotate the x-axis labels for better readability
+        plt.xticks(rotation=45, ha='right',  fontsize=13)
+
+        # Set the plot title
+        plt.title(title,  fontsize=20, fontweight='bold')
+
+        # Show the plot
+        plt.tight_layout()
         plt.show()
