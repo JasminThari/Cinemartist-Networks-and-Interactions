@@ -473,11 +473,15 @@ class GetConnectedMoviesArtist:
         return connected_movies
 
 class Plots: 
-    def plot_bar(self, x, y, data, order, title, xlabel, ylabel, figsize, color_palette, rotation=False): 
+    def plot_bar(self, x, y, data, title, xlabel, ylabel, figsize, color_palette, order=None, rotation=False): 
         # Create the bar plot
         sns.set(style="white") 
         plt.figure(figsize=figsize) 
-        barplot = sns.barplot(x=x, y=y, data=data, order=order, palette=color_palette)
+        if order is None: 
+            barplot = sns.barplot(x=x, y=y, data=data, palette=color_palette)
+        else:
+            barplot = sns.barplot(x=x, y=y, data=data, order=order, palette=color_palette)
+
 
         # Rotate the labels on x-axis for better readability
         if rotation: 
