@@ -3,6 +3,8 @@ import re
 import unicodedata
 import requests
 from bs4 import BeautifulSoup
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 class DataCollection:    
     def collect_movies_artist_data(self, genre: str, year:str, sub_years:list) -> pd.DataFrame:
@@ -103,6 +105,7 @@ class DataCleaning:
         # Replace 
         text = text.replace('!', '')
         text = text.replace('.', '')
+        text = text.replace('-', '')
         return text
 
     def clean_text_cast_column(self, text):
@@ -385,6 +388,14 @@ class DataCleaning:
         # Then, append the rows to keep to the filtered DataFrame
         self.data = self.data.append(rows_to_keep).reset_index(drop=True)
 
+    def categorize_year(self, year):
+        if "2000" <= year <= "2009":
+            return "00-09"
+        elif "2010" <= year <= "2019":
+            return "10-19"
+        else:
+            return "20-29"
+
     def data_cleaning(self): 
         self.data['Title'] = self.data['Title'].apply(self.clean_text_title_column)
         self.clean_text('Title', lower = False)
@@ -413,6 +424,32 @@ class DataCleaning:
 
         self.data = self.data.drop_duplicates(keep='first')
 
+        self.data['Decade'] = self.data['Year'].apply(self.categorize_year)
+
+class GetRatings:     
+
+    def get_ratings(self, data):
+        # get ratings
+        ratings_df = pd.read_json('Ratings_df.json', orient='table')
+        data_ratings = pd.merge(data, ratings_df, on='Title', how='inner')
+        data_ratings = data_ratings.dropna()
+        data_ratings = data_ratings.reset_index(drop=True)
+
+        # Calculating percentage, so get labels for ratings
+        percentile_25 = data_ratings['Rating'].quantile(0.25) 
+        percentile_75 = data_ratings['Rating'].quantile(0.75)
+        
+        def label_rating(row):
+            if row < percentile_25:
+                return 'Low'
+            elif row >= percentile_75:
+                return 'High'
+            else:
+                return 'Moderate'
+            
+        data_ratings['RatingLabel'] = data_ratings['Rating'].apply(label_rating)
+        return data_ratings 
+
 class GetConnectedMoviesArtist:
 
     def connected_movies_and_cast(self, df_movies: pd.DataFrame):
@@ -434,3 +471,84 @@ class GetConnectedMoviesArtist:
             # Include the movie even if it has no connections
             connected_movies[movie] = connections
         return connected_movies
+
+class Plots: 
+    def plot_bar(self, x, y, data, title, xlabel, ylabel, figsize, color_palette, order=None, rotation=False): 
+        # Create the bar plot
+        sns.set(style="white") 
+        plt.figure(figsize=figsize) 
+        if order is None: 
+            barplot = sns.barplot(x=x, y=y, data=data, palette=color_palette)
+        else:
+            barplot = sns.barplot(x=x, y=y, data=data, order=order, palette=color_palette)
+
+
+        # Rotate the labels on x-axis for better readability
+        if rotation: 
+            plt.xticks(rotation=45, ha='right', fontsize=13)
+        else: 
+            plt.xticks(fontsize=13)
+        plt.title(title, fontsize=20, fontweight="bold")
+        plt.xlabel(xlabel, fontsize=16)
+        plt.ylabel(ylabel, fontsize=16)
+
+        total = sum(p.get_height() for p in barplot.patches)
+        for p in barplot.patches:
+            percentage = f'{100 * p.get_height() / total:.1f}%'  # Format as a percentage with one decimal
+            barplot.annotate(percentage,
+                            (p.get_x() + p.get_width() / 2., p.get_height()),
+                            ha='center', va='center',
+                            xytext=(0, 4),
+                            textcoords='offset points',
+                            fontsize=13)
+        plt.show()
+
+    def stacked_bar_plot(self, list_stacks, df, column, colors, title, figsize):
+
+        # Create a figure and axis for the plot
+        fig, ax = plt.subplots(figsize=figsize)
+
+        # Initialize legend handles and labels
+        legend_handles = []
+        legend_labels = []
+
+        # Iterate through each row in the DataFrame
+        for index, row in df.iterrows():
+            com_name = row[column]
+            
+            # Get the rating counts for the current com_name
+            counts = [row[count] for count in list_stacks]
+            
+            # Calculate the total count for normalization
+            total_count = sum(counts)
+            
+            # Convert counts to percentages
+            percentages = [count / total_count * 100 for count in counts]
+            
+            # Create a vertical stacked bar for the current com_name
+            bars = ax.bar(com_name, height=percentages, color=colors, bottom=[sum(percentages[:i]) for i in range(len(list_stacks))])
+            
+            # Create legend handles and labels for each rating
+            for i, typ in enumerate(list_stacks):
+                if index == 0:
+                    legend_handles.append(mpatches.Patch(color=colors[i], label=typ))
+            
+        # Manually create the legend without count numbers
+        ax.legend(handles=legend_handles)
+
+        # Set the y-axis label
+        ax.set_ylabel('Percentage', fontsize=16)
+        ax.set_xlabel('Community', fontsize=16)
+
+        # Set the y-axis ticks to display percentages
+        ax.set_yticklabels(['{:,.0f}%'.format(x) for x in ax.get_yticks()])
+        ax.set_ylim([0, ax.get_ylim()[1] * 1.08]) 
+        # Rotate the x-axis labels for better readability
+        plt.xticks(rotation=45, ha='right',  fontsize=13)
+
+        # Set the plot title
+        plt.title(title,  fontsize=20, fontweight='bold')
+
+        # Show the plot
+        plt.tight_layout()
+        plt.show()
