@@ -1,0 +1,21 @@
+thumb|left|Ares III mission landing site ([[Acidalia Planitia region)]]
+
+
+In 2035, the crew of the Ares III mission to Mars is exploring Acidalia Planitia on Martian solar day (sol)&nbsp;18 of their 31-sol expedition. A severe dust storm threatens to topple their Mars Ascent Vehicle (MAV). The mission is abandoned, but as the crew evacuates, astronaut Mark Watney is struck by debris. The telemetry from his suit's bio-monitor is damaged, and Watney is erroneously presumed dead. With the MAV on the verge of toppling, the remaining crew takes off for their orbiting vessel, the ''Hermes''.
+
+Watney awakens after the storm, injured and with a low-oxygen warning. He returns to the crew's surface habitat ("Hab") and treats his wound. As Watney recovers, he begins a video diary. Unable to communicate with Earth, his only chance of rescue is the next Mars mission; in four years, the Ares IV will land {{convert|3200|km|sp=us}} away at the Schiaparelli crater. Watney's immediate concern is food; being a botanist, he creates a garden inside the Hab using Martian soil fertilized with the crew's bio-waste and manufactures water from leftover rocket fuel. He then cultivates potatoes using whole potatoes reserved for a special Thanksgiving meal. He also begins modifying the rover for the journey to the Ares IV MAV site.
+
+On Earth, NASA satellite planner Mindy Park, reviewing satellite images, notices moved equipment and realizes Watney must be alive. NASA director Teddy Sanders releases the news to the public but decides not to tell the Ares III crew so that they will remain focused on their mission, over flight director Mitch Henderson's strong objection.
+
+Watney takes the rover on a one-month journey to retrieve the ''Pathfinder'' probe, which fell silent in 1997, and its associated ''Sojourner'' rover. Using ''Pathfinder''{{'}}s camera and motor, he establishes visual contact with NASA. NASA transmits a software patch to link the mission's rover with ''Pathfinder'', enabling communication by text. Sanders finally allows Henderson to inform Watney's crewmates.
+
+Mars missions director Vincent Kapoor and Jet Propulsion Laboratory (JPL) director Bruce Ng prepare a space probe to deliver enough food for Watney to survive until Ares IV's arrival. Meanwhile, the Hab's airlock blows out, exposing the Hab to the harsh Martian environment, killing all the potato plants. Sanders orders the routine safety inspections be bypassed to save time. As a result, the Atlas V rocket explodes soon after lift-off.
+
+The China National Space Administration has developed a secret booster rocket, the ''Taiyang Shen''. The decision is made to use the rocket to resupply Watney in exchange for getting a Chinese astronaut on the next Ares mission. Astrophysicist Rich Purnell devises an alternative plan: have the ''Taiyang Shen'' rendezvous with and resupply the ''Hermes'', which will then use Earth's gravity to "slingshot" back to Mars two years earlier than Ares IV. Sanders rejects the idea, considering it too risky for the ''Hermes'' crew. Henderson surreptitiously sends Purnell's proposal to the crew; they unanimously vote to implement it without seeking NASA approval, disabling NASA's remote controls and making the course change. Sanders is forced to support them publicly, but demands Henderson resign after the Ares III mission is complete.
+
+Watney begins the 90-sol journey to Schiaparelli, where the MAV for Ares IV has been pre-positioned. He must use it to rendezvous with the ''Hermes'', but it needs to be lightened considerably. After takeoff, when the MAV runs out of fuel, its velocity relative to the ''Hermes'' is too fast for Watney to be picked up. Commander Lewis quickly improvises, using an explosive to breach a forward airlock, resulting in air escaping violently and slowing down the ''Hermes''. It is still not enough; using a tethered Manned Maneuvering Unit, Lewis is unable to reach Watney. Watney pierces his pressure suit, using the escaping air to propel himself to Lewis, ending his 561 sols alone on Mars.
+
+After returning to Earth, Watney becomes a survival instructor for astronaut candidates. Five years later, as the Ares V is about to launch, those involved in Watney's rescue are seen in their current lives.
+
+thumb|center|upright=2.5|Mark Watney's route on Mars
+
