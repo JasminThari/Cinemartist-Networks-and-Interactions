@@ -1,0 +1,74 @@
++-----------------+---------------+---------+----------------+
+| Expected genre  |    Keyword    | P-Value | Is_Significant |
++-----------------+---------------+---------+----------------+
+|     Horror      |     fear      | 0.2772  |     False      |
+|     Horror      |    ghosts     | 0.0099  |      True      |
+|     Horror      |    murder     | 0.0099  |      True      |
+|     Horror      |     kill      | 0.0099  |      True      |
+|     Horror      |     blood     | 0.0099  |      True      |
+|     Horror      |   nightmare   | 0.0099  |      True      |
+|     Horror      |    creepy     | 0.0297  |      True      |
+|     Horror      | supernatural  | 0.0099  |      True      |
+|     Horror      |   haunting    | 0.0099  |      True      |
+|     Horror      |   slaughter   | 0.0099  |      True      |
+|     Comedy      |     humor     | 0.0297  |      True      |
+|     Comedy      |     love      | 0.0099  |      True      |
+|     Comedy      |    parody     | 0.0099  |      True      |
+|     Comedy      |    friend     | 0.0099  |      True      |
+|     Comedy      |     silly     | 0.0198  |      True      |
+|     Comedy      |      sex      | 0.0099  |      True      |
+|     Comedy      |     laugh     | 0.9901  |     False      |
+|     Comedy      |    family     | 0.0693  |     False      |
+|     Comedy      |     sweet     | 0.2772  |     False      |
+|     Comedy      |     funny     | 0.0198  |      True      |
+|     Action      |    explode    | 0.0099  |      True      |
+|     Action      |     chase     | 0.0198  |      True      |
+|     Action      |     save      | 0.0198  |      True      |
+|     Action      |    combat     | 0.0099  |      True      |
+|     Action      |     shoot     | 0.0099  |      True      |
+|     Action      |      car      | 0.3663  |     False      |
+|     Action      |    rescue     | 0.0099  |      True      |
+|     Action      |    terror     | 0.0099  |      True      |
+|     Action      |    pursuit    | 0.0099  |      True      |
+|     Action      |    tension    | 0.9703  |     False      |
+| Science Fiction |  futuristic   | 0.0099  |      True      |
+| Science Fiction |    aliens     | 0.0099  |      True      |
+| Science Fiction |     space     | 0.0099  |      True      |
+| Science Fiction |  hyperspace   | 0.0792  |     False      |
+| Science Fiction |  technology   | 0.0099  |      True      |
+| Science Fiction |  time-travel  | 0.0297  |      True      |
+| Science Fiction |   dystopian   | 0.0099  |      True      |
+| Science Fiction |     robot     | 0.0099  |      True      |
+| Science Fiction |   nanotech    | 0.0198  |      True      |
+| Science Fiction |    android    | 0.0099  |      True      |
+|    Adventure    |     quest     | 0.9307  |     False      |
+|    Adventure    |    journey    | 0.0099  |      True      |
+|    Adventure    |   explorer    | 0.1287  |     False      |
+|    Adventure    |   treasure    | 0.0099  |      True      |
+|    Adventure    |  wilderness   | 0.0099  |      True      |
+|    Adventure    |    mystery    | 0.9604  |     False      |
+|    Adventure    |   artifact    | 0.1683  |     False      |
+|    Adventure    |      map      | 0.0099  |      True      |
+|    Adventure    |   discovery   |  0.297  |     False      |
+|    Adventure    |  expedition   | 0.0099  |      True      |
+|    Thriller     |   intrigue    | 0.6535  |     False      |
+|    Thriller     | psychological | 0.0099  |      True      |
+|    Thriller     |    mystery    | 0.0099  |      True      |
+|    Thriller     |     crime     | 0.0099  |      True      |
+|    Thriller     |      spy      |  0.099  |     False      |
+|    Thriller     |      gun      | 0.0099  |      True      |
+|    Thriller     |  conspiracy   | 0.1782  |     False      |
+|    Thriller     |   espionage   |  0.802  |     False      |
+|    Thriller     |   betrayal    | 0.5842  |     False      |
+|    Thriller     |  infiltrate   | 0.9604  |     False      |
+|     Fantasy     |     magic     | 0.0099  |      True      |
+|     Fantasy     |    dragons    | 0.0099  |      True      |
+|     Fantasy     |    wizards    | 0.0099  |      True      |
+|     Fantasy     |    kingdom    | 0.0099  |      True      |
+|     Fantasy     |  enchantment  | 0.0099  |      True      |
+|     Fantasy     |     witch     | 0.0099  |      True      |
+|     Fantasy     |     beast     | 0.0099  |      True      |
+|     Fantasy     |    legend     | 0.0099  |      True      |
+|     Fantasy     |   mystical    | 0.0099  |      True      |
+|     Fantasy     |    sorcery    | 0.0198  |      True      |
++-----------------+---------------+---------+----------------+
