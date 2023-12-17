@@ -4,9 +4,9 @@ This repository is an integral component of the exam project titled "The Languag
 Here, you'll find valuable resources and insights related to our project.
 
 Key Contents:
-1. **Project Notebook:** The primary artifact of our work is the explanatory notebook, conveniently named ExplainerNotebookCinemArtist.ipynb. This notebook contains all the code utilized throughout the project, providing detailed explanations and insights.
+1. **Project Notebook:** The primary artifact of our work is the explanatory notebook, named ExplainerNotebookCinemArtist.ipynb. This notebook contains all the code utilized throughout the project, providing detailed explanations and insights.
 
-2. **Data Repository:** All the project's data is meticulously organized within the "Data" folder. This resource is essential for anyone interested in reproducing or extending our analyses.
+2. **Data Repository:** All the project's data is organized within the "Data" folder. This resource is essential for anyone interested in reproducing or extending our analyses.
 
 3. **Textual Plots:** Visual representations and plots generated during our analysis can be located in the "Text Plots" folder. These visualizations offer additional perspectives on our findings.
 
