@@ -8,7 +8,7 @@ Key Contents:
 
 2. **Data Repository:** All the project's data is organized within the "Data" folder. This resource is essential for anyone interested in reproducing or extending our analyses.
 
-3. **Textual Plots:** Visual representations and plots generated during our analysis can be located in the "Text Plots" folder. These visualizations offer additional perspectives on our findings.
+3. **Text Plots:** The plots of the movies extracted during our analysis is located in the "Text Plots" folder. 
 
 To review our project in its entirety, you can access the notebook directly via the following link on Nbviewer:
 
