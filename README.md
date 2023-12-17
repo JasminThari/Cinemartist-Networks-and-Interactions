@@ -14,4 +14,4 @@ To review our project in its entirety, you can access the notebook directly via 
 
 (https://nbviewer.org/github/JasminThari/Cinemartist-Networks-and-Interactions/blob/28d26fe5e4ad88f500e9bb1d0b8b64c099a6e48d/ExplainerNotebookCinemArtist.ipynb)
 
-We hope you find our work informative and insightful. Please feel free to reach out if you have any questions or require further information. Your interest and engagement with our project are greatly appreciated.
+We hope you find our work informative and insightful. Please feel free to reach out if you have any questions or require further information.
